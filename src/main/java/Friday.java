@@ -1,10 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Friday {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Task[] tasks = new Task[100];
-        int numTasks = 0;
+        ArrayList<Task> tasks = new ArrayList<>(); // Use ArrayList for storing tasks (the collection requirement)
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Friday");
@@ -25,18 +25,18 @@ public class Friday {
                 } else if (inputParts[0].equals("list")) {
                     System.out.println("____________________________________________________________");
                     System.out.println(" Here are the tasks in your list:");
-                    for (int i = 0; i < numTasks; i++) {
-                        System.out.println(" " + (i + 1) + ". " + tasks[i]);
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.println(" " + (i + 1) + ". " + tasks.get(i));
                     }
                     System.out.println("____________________________________________________________");
 
                 } else if (inputParts[0].equals("mark")) {
                     int taskIndex = Integer.parseInt(inputParts[1]) - 1; // Get the task index
-                    if (taskIndex >= 0 && taskIndex < numTasks) {
-                        tasks[taskIndex].markAsDone();
+                    if (taskIndex >= 0 && taskIndex < tasks.size()) {
+                        tasks.get(taskIndex).markAsDone();
                         System.out.println("____________________________________________________________");
                         System.out.println(" Nice! I've marked this task as done:");
-                        System.out.println("   " + tasks[taskIndex]);
+                        System.out.println("   " + tasks.get(taskIndex));
                         System.out.println("____________________________________________________________");
                     } else {
                         throw new IndexOutOfBoundsException("Invalid task number.");
@@ -44,11 +44,11 @@ public class Friday {
 
                 } else if (inputParts[0].equals("unmark")) {
                     int taskIndex = Integer.parseInt(inputParts[1]) - 1; // Get the task index
-                    if (taskIndex >= 0 && taskIndex < numTasks) {
-                        tasks[taskIndex].markAsNotDone();
+                    if (taskIndex >= 0 && taskIndex < tasks.size()) {
+                        tasks.get(taskIndex).markAsNotDone();
                         System.out.println("____________________________________________________________");
                         System.out.println(" OK, I've marked this task as not done yet:");
-                        System.out.println("   " + tasks[taskIndex]);
+                        System.out.println("   " + tasks.get(taskIndex));
                         System.out.println("____________________________________________________________");
                     } else {
                         throw new IndexOutOfBoundsException("Invalid task number.");
@@ -58,12 +58,11 @@ public class Friday {
                     if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                         throw new TodoException("The description of a todo cannot be empty.");
                     }
-                    tasks[numTasks] = new Todo(inputParts[1]); // Create a new ToDo task
-                    numTasks++;
+                    tasks.add(new Todo(inputParts[1]));
                     System.out.println("____________________________________________________________");
                     System.out.println(" Got it. I've added this task:");
-                    System.out.println("   " + tasks[numTasks - 1]);
-                    System.out.println(" Now you have " + numTasks + " tasks in the list.");
+                    System.out.println("   " + tasks.get(tasks.size() - 1));
+                    System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println("____________________________________________________________");
 
                 } else if (inputParts[0].equals("deadline")) {
@@ -71,12 +70,11 @@ public class Friday {
                         throw new DeadlineException("The description of a deadline must include a /by clause.");
                     }
                     String[] details = inputParts[1].split(" /by ", 2);
-                    tasks[numTasks] = new Deadline(details[0], details[1]);
-                    numTasks++;
+                    tasks.add(new Deadline(details[0], details[1]));
                     System.out.println("____________________________________________________________");
                     System.out.println(" Got it. I've added this task:");
-                    System.out.println("   " + tasks[numTasks - 1]);
-                    System.out.println(" Now you have " + numTasks + " tasks in the list.");
+                    System.out.println("   " + tasks.get(tasks.size() - 1));
+                    System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println("____________________________________________________________");
 
                 } else if (inputParts[0].equals("event")) {
@@ -84,13 +82,25 @@ public class Friday {
                         throw new EventException("The description of an event must include /from and /to clauses.");
                     }
                     String[] details = inputParts[1].split(" /from | /to ", 3);
-                    tasks[numTasks] = new Event(details[0], details[1], details[2]);
-                    numTasks++;
+                    tasks.add(new Event(details[0], details[1], details[2]));
                     System.out.println("____________________________________________________________");
                     System.out.println(" Got it. I've added this task:");
-                    System.out.println("   " + tasks[numTasks - 1]);
-                    System.out.println(" Now you have " + numTasks + " tasks in the list.");
+                    System.out.println("   " + tasks.get(tasks.size() - 1));
+                    System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println("____________________________________________________________");
+
+                } else if (inputParts[0].equals("delete")) {
+                    int taskIndex = Integer.parseInt(inputParts[1]) - 1; // Get the task index
+                    if (taskIndex >= 0 && taskIndex < tasks.size()) {
+                        Task removedTask = tasks.remove(taskIndex);
+                        System.out.println("____________________________________________________________");
+                        System.out.println(" Noted. I've removed this task:");
+                        System.out.println("   " + removedTask);
+                        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+                        System.out.println("____________________________________________________________");
+                    } else {
+                        throw new IndexOutOfBoundsException("Invalid task number.");
+                    }
 
                 } else {
                     throw new UnknownCommandException("I'm sorry, but I don't know what that means :-(");
