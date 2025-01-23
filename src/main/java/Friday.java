@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Friday {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] tasks = new String[100];
-        int taskCount = 0;
+        Task[] tasks = new Task[100];
+        int numTasks = 0;
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Friday");
@@ -13,31 +13,59 @@ public class Friday {
 
         while (true) {
             String userInput = scanner.nextLine();
+            String[] inputParts = userInput.split(" ", 2);
 
-            if (userInput.equals("bye")) {
+            if (inputParts[0].equals("bye")) {
                 System.out.println("____________________________________________________________");
                 System.out.println(" Bye. Hope to see you again soon!");
                 System.out.println("____________________________________________________________");
                 break;
 
-            } else if (userInput.equals("list")) {
+            } else if (inputParts[0].equals("list")) {
                 System.out.println("____________________________________________________________");
-                for (int i = 0; i < taskCount; i++) {
+                System.out.println(" Here are the tasks in your list:");
+                for (int i = 0; i < numTasks; i++) {
                     System.out.println(" " + (i + 1) + ". " + tasks[i]);
                 }
                 System.out.println("____________________________________________________________");
 
+            } else if (inputParts[0].equals("mark")) {
+                int taskIndex = Integer.parseInt(inputParts[1]) - 1; // Get the task index
+                if (taskIndex >= 0 && taskIndex < numTasks) {
+                    tasks[taskIndex].markAsDone();
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" Nice! I've marked this task as done:");
+                    System.out.println("   " + tasks[taskIndex]);
+                    System.out.println("____________________________________________________________");
+                } else {
+                    System.out.println(" Invalid task number.");
+                }
+
+            } else if (inputParts[0].equals("unmark")) {
+                int taskIndex = Integer.parseInt(inputParts[1]) - 1; // Get the task index
+                if (taskIndex >= 0 && taskIndex < numTasks) {
+                    tasks[taskIndex].markAsNotDone();
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" OK, I've marked this task as not done yet:");
+                    System.out.println("   " + tasks[taskIndex]);
+                    System.out.println("____________________________________________________________");
+                } else {
+                    System.out.println(" Invalid task number.");
+                }
+
             } else {
-                tasks[taskCount] = userInput;
-                taskCount++;
+                tasks[numTasks] = new Task(userInput); // Add a new task
+                numTasks++;
                 System.out.println("____________________________________________________________");
                 System.out.println(" added: " + userInput);
                 System.out.println("____________________________________________________________");
             }
         }
+
         scanner.close();
     }
 }
+
 
 
 
