@@ -1,25 +1,29 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String from;
-    private String to;
+    private LocalDate from;
+    private LocalDate to;
 
     public Event(String description, String from, String to) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.from = LocalDate.parse(from); // Parse string to LocalDate
+        this.to = LocalDate.parse(to);     // Parse string to LocalDate
     }
 
-    public String getFrom() {
-        return from; // Getter for the private field 'from'
+    public LocalDate getFrom() {
+        return from;
     }
 
-    public String getTo() {
-        return to; // Getter for the private field 'to'
+    public LocalDate getTo() {
+        return to;
     }
 
     @Override
     public String toString() {
-        return "[E][" + getStatusIcon() + "] " + description + " (from: " + from + " to: " + to + ")";
+        return "[E][" + getStatusIcon() + "] " + description + " (from: " + from.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to: " + to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
+
 
 
