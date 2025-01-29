@@ -8,9 +8,18 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public String getFrom() {
+        return from; // Getter for the private field 'from'
+    }
+
+    public String getTo() {
+        return to; // Getter for the private field 'to'
+    }
+
     @Override
     public String toString() {
         return "[E][" + getStatusIcon() + "] " + description + " (from: " + from + " to: " + to + ")";
     }
 }
+
 

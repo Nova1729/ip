@@ -1,10 +1,18 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Friday {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks;
+
+        try {
+            tasks = FileManager.loadTasks();
+        } catch (IOException e) {
+            System.out.println("Error loading tasks: " + e.getMessage());
+            tasks = new ArrayList<>();
+        }
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Friday");
@@ -22,7 +30,7 @@ public class Friday {
                         System.out.println("____________________________________________________________");
                         System.out.println(" Bye. Hope to see you again soon!");
                         System.out.println("____________________________________________________________");
-                        break;
+                        return;
 
                     case LIST:
                         System.out.println("____________________________________________________________");
@@ -41,6 +49,7 @@ public class Friday {
                             System.out.println(" Nice! I've marked this task as done:");
                             System.out.println("   " + tasks.get(markIndex));
                             System.out.println("____________________________________________________________");
+                            FileManager.saveTasks(tasks);
                         } else {
                             throw new IndexOutOfBoundsException("Invalid task number.");
                         }
@@ -54,6 +63,7 @@ public class Friday {
                             System.out.println(" OK, I've marked this task as not done yet:");
                             System.out.println("   " + tasks.get(unmarkIndex));
                             System.out.println("____________________________________________________________");
+                            FileManager.saveTasks(tasks);
                         } else {
                             throw new IndexOutOfBoundsException("Invalid task number.");
                         }
@@ -69,6 +79,7 @@ public class Friday {
                         System.out.println("   " + tasks.get(tasks.size() - 1));
                         System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println("____________________________________________________________");
+                        FileManager.saveTasks(tasks);
                         break;
 
                     case DEADLINE:
@@ -82,6 +93,7 @@ public class Friday {
                         System.out.println("   " + tasks.get(tasks.size() - 1));
                         System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println("____________________________________________________________");
+                        FileManager.saveTasks(tasks);
                         break;
 
                     case EVENT:
@@ -95,6 +107,7 @@ public class Friday {
                         System.out.println("   " + tasks.get(tasks.size() - 1));
                         System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println("____________________________________________________________");
+                        FileManager.saveTasks(tasks);
                         break;
 
                     case DELETE:
@@ -106,6 +119,7 @@ public class Friday {
                             System.out.println("   " + removedTask);
                             System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                             System.out.println("____________________________________________________________");
+                            FileManager.saveTasks(tasks);
                         } else {
                             throw new IndexOutOfBoundsException("Invalid task number.");
                         }
@@ -123,6 +137,7 @@ public class Friday {
         }
     }
 }
+
 
 
 
