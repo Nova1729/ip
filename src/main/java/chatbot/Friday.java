@@ -3,7 +3,7 @@ package chatbot;
 import chatbot.commands.Command;
 import chatbot.tasks.TaskList;
 import chatbot.*;
-import chatbot.exceptions.UnknownCommandException;
+import chatbot.exceptions.*;
 
 public class Friday {
     private final Ui ui;
