@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
-    private static final Path FILE_PATH = Paths.get("CS2103T", "CS2103T_chatBot_Tasks", "duke.txt");
+    private static final Path FILE_PATH = Paths.get("CS2103T", "CS2103T_chatBot_Tasks", "Friday.txt");
 
     // Save tasks to the file
     public static void saveTasks(List<Task> tasks) {
