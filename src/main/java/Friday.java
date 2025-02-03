@@ -34,7 +34,7 @@ public class Friday {
     }
 
     public static void main(String[] args) {
-        new Friday("CS2103T/CS2103T_chatBot_Tasks/duke.txt").run();
+        new Friday("CS2103T/CS2103T_chatBot_Tasks/Friday.txt").run();
     }
 }
 
