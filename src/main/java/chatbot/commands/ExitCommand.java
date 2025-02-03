@@ -1,3 +1,9 @@
+package chatbot.commands;
+
+import chatbot.tasks.*;
+import chatbot.Ui;
+import chatbot.Storage;
+
 public class ExitCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

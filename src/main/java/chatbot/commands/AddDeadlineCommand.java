@@ -1,3 +1,10 @@
+package chatbot.commands;
+
+import chatbot.tasks.*;
+import chatbot.Ui;
+import chatbot.Storage;
+import chatbot.exceptions.*;
+
 public class AddDeadlineCommand extends Command {
     private final String input;
 

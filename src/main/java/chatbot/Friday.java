@@ -1,3 +1,10 @@
+package chatbot;
+
+import chatbot.commands.Command;
+import chatbot.tasks.TaskList;
+import chatbot.*;
+import chatbot.exceptions.UnknownCommandException;
+
 public class Friday {
     private final Ui ui;
     private final Storage storage;

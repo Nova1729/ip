@@ -1,3 +1,10 @@
+package chatbot.commands;
+
+import chatbot.tasks.*;
+import chatbot.Ui;
+import chatbot.Storage;
+import chatbot.exceptions.*;
+
 public class AddEventCommand extends Command {
     private final String input;
 

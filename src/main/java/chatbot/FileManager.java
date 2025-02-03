@@ -1,3 +1,7 @@
+package chatbot;
+
+import chatbot.tasks.*;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
