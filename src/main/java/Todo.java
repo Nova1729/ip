@@ -1,6 +1,16 @@
 public class Todo extends Task {
     public Todo(String description) {
-        super(description); // inheritance
+        super(description);
+    }
+
+    public Todo(String description, boolean isDone) {
+        super(description);
+        this.isDone = isDone;
+    }
+
+    @Override
+    public String toFileFormat() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
     }
 
     @Override
@@ -8,3 +18,5 @@ public class Todo extends Task {
         return "[T][" + getStatusIcon() + "] " + description;
     }
 }
+
+

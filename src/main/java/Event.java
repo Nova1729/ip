@@ -11,6 +11,13 @@ public class Event extends Task {
         this.to = LocalDate.parse(to);     // Parse string to LocalDate
     }
 
+    public Event(String description, String from, String to, boolean isDone) {
+        super(description);
+        this.isDone = isDone;
+        this.from = LocalDate.parse(from); // Parse string to LocalDate
+        this.to = LocalDate.parse(to);     // Parse string to LocalDate
+    }
+
     public LocalDate getFrom() {
         return from;
     }
@@ -20,10 +27,17 @@ public class Event extends Task {
     }
 
     @Override
+    public String toFileFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " | " + to;
+    }
+
+    @Override
     public String toString() {
         return "[E][" + getStatusIcon() + "] " + description + " (from: " + from.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to: " + to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
+
+
 
 
 

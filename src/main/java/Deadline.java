@@ -9,8 +9,19 @@ public class Deadline extends Task {
         this.by = LocalDate.parse(by); // Parse string to LocalDate
     }
 
+    public Deadline(String description, String by, boolean isDone) {
+        super(description);
+        this.isDone = isDone;
+        this.by = LocalDate.parse(by); // Parse string to LocalDate
+    }
+
     public LocalDate getBy() {
         return by;
+    }
+
+    @Override
+    public String toFileFormat() {
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
     }
 
     @Override
@@ -18,5 +29,7 @@ public class Deadline extends Task {
         return "[D][" + getStatusIcon() + "] " + description + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
+
+
 
 

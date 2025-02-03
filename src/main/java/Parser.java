@@ -1,5 +1,5 @@
 public class Parser {
-    public static Command parse(String fullCommand) {
+    public static Command parse(String fullCommand) throws UnknownCommandException {
         String[] inputParts = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.toCommandType(inputParts[0]);
         switch (commandType) {
@@ -38,3 +38,4 @@ public class Parser {
         }
     }
 }
+
