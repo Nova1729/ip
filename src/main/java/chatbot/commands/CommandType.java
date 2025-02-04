@@ -1,7 +1,5 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-
 /**
  * Represents the different types of commands that the chatbot can process.
  */
