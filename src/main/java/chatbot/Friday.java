@@ -2,8 +2,6 @@ package chatbot;
 
 import chatbot.commands.Command;
 import chatbot.tasks.TaskList;
-import chatbot.*;
-import chatbot.exceptions.*;
 
 /**
  * Represents the main chatbot application, Friday.
