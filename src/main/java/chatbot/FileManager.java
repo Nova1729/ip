@@ -7,10 +7,18 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The FileManager class is responsible for handling file I/O operations
+ * for saving and loading tasks to/from a persistent storage file.
+ */
 public class FileManager {
     private static final Path FILE_PATH = Paths.get("CS2103T", "CS2103T_chatBot_Tasks", "Friday.txt");
 
-    // Save tasks to the file
+    /**
+     * Saves a list of tasks to a file.
+     *
+     * @param tasks The list of tasks to save.
+     */
     public static void saveTasks(List<Task> tasks) {
         try {
             Files.createDirectories(FILE_PATH.getParent()); // Ensure directories exist
@@ -25,8 +33,13 @@ public class FileManager {
         }
     }
 
-    // Load tasks from the file
-    public static ArrayList<Task> loadTasks() throws IOException{
+    /**
+     * Loads tasks from a file.
+     *
+     * @return An ArrayList of tasks loaded from the file. If the file does not exist, an empty list is returned.
+     * @throws IOException If an error occurs during file reading.
+     */
+    public static ArrayList<Task> loadTasks() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         if (!Files.exists(FILE_PATH)) {
             return tasks; // Return an empty list if the file doesn't exist
@@ -42,7 +55,12 @@ public class FileManager {
         return tasks;
     }
 
-    // Convert a Task to a String (to save to file)
+    /**
+     * Converts a Task object to its string representation for saving to a file.
+     *
+     * @param task The task to convert.
+     * @return The string representation of the task.
+     */
     private static String taskToString(Task task) {
         if (task instanceof Todo) {
             return "T | " + (task.isDone ? "1" : "0") + " | " + task.description;
@@ -56,7 +74,13 @@ public class FileManager {
         return "";
     }
 
-    // Parse a line from the file back into a Task
+    /**
+     * Parses a string representation of a task and converts it back into a Task object.
+     *
+     * @param line The string representation of the task.
+     * @return The Task object represented by the string.
+     * @throws IllegalArgumentException If the task type in the string is unknown or invalid.
+     */
     private static Task parseTask(String line) {
         String[] parts = line.split(" \\| ");
         switch (parts[0]) {
@@ -83,4 +107,5 @@ public class FileManager {
         }
     }
 }
+
 
