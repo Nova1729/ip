@@ -4,7 +4,22 @@ import chatbot.commands.*;
 import chatbot.exceptions.*;
 import chatbot.tasks.*;
 
+/**
+ * The Parser class is responsible for interpreting user input and converting it into
+ * the appropriate {@link Command} or {@link Task}.
+ */
 public class Parser {
+
+    /**
+     * Parses the full user command and converts it into a {@link Command} object.
+     *
+     * @param fullCommand The raw input string provided by the user.
+     * @return A {@link Command} object corresponding to the user input.
+     * @throws UnknownCommandException If the command is unrecognized.
+     * @throws TodoException If the TODO command is missing a description.
+     * @throws DeadlineException If the DEADLINE command is missing the `/by` clause.
+     * @throws EventException If the EVENT command is missing the `/from` or `/to` clauses.
+     */
     public static Command parse(String fullCommand) throws UnknownCommandException, TodoException, DeadlineException, EventException {
         String[] inputParts = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.toCommandType(inputParts[0]);
@@ -57,6 +72,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a single line from the storage file and converts it into a {@link Task}.
+     *
+     * @param line A line from the storage file in the format used for saving tasks.
+     * @return A {@link Task} object reconstructed from the file.
+     * @throws IllegalArgumentException If the line format is corrupted or invalid.
+     */
     public static Task parseTask(String line) throws IllegalArgumentException {
         try {
             String[] parts = line.split(" \\| ");
@@ -74,8 +96,8 @@ public class Parser {
             throw new IllegalArgumentException("Corrupted or invalid task format: " + line, e);
         }
     }
-
 }
+
 
 
 
