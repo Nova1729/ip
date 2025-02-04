@@ -39,10 +39,10 @@ public class FileManager {
      * @return An ArrayList of tasks loaded from the file. If the file does not exist, an empty list is returned.
      * @throws IOException If an error occurs during file reading.
      */
-    public static ArrayList<Task> loadTasks() throws IOException {
+    public static ArrayList<Task> loadTasks() throws IOException{
         ArrayList<Task> tasks = new ArrayList<>();
         if (!Files.exists(FILE_PATH)) {
-            return tasks; // Return an empty list if the file doesn't exist
+            return tasks;
         }
         try (BufferedReader reader = Files.newBufferedReader(FILE_PATH)) {
             String line;

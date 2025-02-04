@@ -67,6 +67,12 @@ public class Parser {
             }
             return new DeleteCommand(Integer.parseInt(inputParts[1]));
 
+        case FIND:
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+                throw new IllegalArgumentException("OOPS!!! The find command requires a keyword.");
+            }
+            return new FindCommand(inputParts[1]);
+
         default:
             throw new UnknownCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

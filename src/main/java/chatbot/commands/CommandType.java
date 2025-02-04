@@ -28,6 +28,9 @@ public enum CommandType {
     /** Command to delete a task from the task list. */
     DELETE,
 
+    /** Command to find tasks associated with a specific word. */
+    FIND,
+
     /** Represents an unknown or invalid command. */
     UNKNOWN;
 
