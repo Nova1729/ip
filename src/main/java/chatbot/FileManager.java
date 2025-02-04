@@ -10,7 +10,6 @@ import java.util.List;
 public class FileManager {
     private static final Path FILE_PATH = Paths.get("CS2103T", "CS2103T_chatBot_Tasks", "Friday.txt");
 
-    // Save tasks to the file
     public static void saveTasks(List<Task> tasks) {
         try {
             Files.createDirectories(FILE_PATH.getParent()); // Ensure directories exist
@@ -25,11 +24,10 @@ public class FileManager {
         }
     }
 
-    // Load tasks from the file
     public static ArrayList<Task> loadTasks() throws IOException{
         ArrayList<Task> tasks = new ArrayList<>();
         if (!Files.exists(FILE_PATH)) {
-            return tasks; // Return an empty list if the file doesn't exist
+            return tasks;
         }
         try (BufferedReader reader = Files.newBufferedReader(FILE_PATH)) {
             String line;
@@ -42,7 +40,6 @@ public class FileManager {
         return tasks;
     }
 
-    // Convert a Task to a String (to save to file)
     private static String taskToString(Task task) {
         if (task instanceof Todo) {
             return "T | " + (task.isDone ? "1" : "0") + " | " + task.description;
@@ -56,7 +53,6 @@ public class FileManager {
         return "";
     }
 
-    // Parse a line from the file back into a Task
     private static Task parseTask(String line) {
         String[] parts = line.split(" \\| ");
         switch (parts[0]) {
