@@ -5,10 +5,10 @@ package chatbot.tasks;
  */
 public class Task {
     /** The description of the task. */
-    public String description;
+    private String description;
 
     /** The completion status of the task. True if completed, false otherwise. */
-    public boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructs a new Task with the given description.
@@ -19,6 +19,24 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    /**
+     * Returns the description of the task.
+     *
+     * @return The task's description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Returns the completion status of the task.
+     *
+     * @return {@code true} if the task is done, {@code false} otherwise.
+     */
+    public boolean isDone() {
+        return isDone;
     }
 
     /**
@@ -66,6 +84,7 @@ public class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 }
+
 
 
 

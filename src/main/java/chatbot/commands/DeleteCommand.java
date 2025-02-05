@@ -1,8 +1,9 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.Ui;
+import chatbot.tasks.Task;
+import chatbot.tasks.TaskList;
 
 /**
  * Represents a command to delete a task from the task list.
@@ -42,5 +43,6 @@ public class DeleteCommand extends Command {
         storage.save(tasks.getTasks());
     }
 }
+
 
 

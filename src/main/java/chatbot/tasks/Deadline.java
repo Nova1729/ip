@@ -13,7 +13,13 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by, boolean isDone) {
         super(description);
-        this.isDone = isDone;
+
+        if (isDone) {
+            super.markAsDone();
+        } else {
+            super.markAsNotDone();
+        }
+
         this.by = LocalDate.parse(by); // Parse string to LocalDate
     }
 
@@ -23,12 +29,13 @@ public class Deadline extends Task {
 
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
+        return "D | " + (this.isDone() ? "1" : "0") + " | " + this.getDescription() + " | " + by;
     }
 
     @Override
     public String toString() {
-        return "[D][" + getStatusIcon() + "] " + description + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D][" + getStatusIcon() + "] "
+                + this.getDescription() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
 

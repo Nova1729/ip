@@ -7,16 +7,21 @@ public class Todo extends Task {
 
     public Todo(String description, boolean isDone) {
         super(description);
-        this.isDone = isDone;
+        if (isDone) {
+            super.markAsDone();
+        } else {
+            super.markAsNotDone();
+        }
+
     }
 
     @Override
     public String toFileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + description;
+        return "T | " + (this.isDone() ? "1" : "0") + " | " + this.getDescription();
     }
 
     @Override
     public String toString() {
-        return "[T][" + getStatusIcon() + "] " + description;
+        return "[T][" + getStatusIcon() + "] " + this.getDescription();
     }
 }

@@ -1,8 +1,9 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.Ui;
+import chatbot.tasks.Task;
+import chatbot.tasks.TaskList;
 
 /**
  * Represents a command to unmark a specific task as not done.

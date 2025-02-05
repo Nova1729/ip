@@ -1,8 +1,24 @@
 package chatbot;
 
-import chatbot.commands.*;
-import chatbot.exceptions.*;
-import chatbot.tasks.*;
+import chatbot.commands.AddDeadlineCommand;
+import chatbot.commands.AddEventCommand;
+import chatbot.commands.AddTodoCommand;
+import chatbot.commands.Command;
+import chatbot.commands.CommandType;
+import chatbot.commands.DeleteCommand;
+import chatbot.commands.ExitCommand;
+import chatbot.commands.FindCommand;
+import chatbot.commands.ListCommand;
+import chatbot.commands.MarkCommand;
+import chatbot.commands.UnmarkCommand;
+import chatbot.exceptions.DeadlineException;
+import chatbot.exceptions.EventException;
+import chatbot.exceptions.TodoException;
+import chatbot.exceptions.UnknownCommandException;
+import chatbot.tasks.Deadline;
+import chatbot.tasks.Event;
+import chatbot.tasks.Task;
+import chatbot.tasks.Todo;
 
 /**
  * The Parser class is responsible for interpreting user input and converting it into
@@ -20,7 +36,8 @@ public class Parser {
      * @throws DeadlineException If the DEADLINE command is missing the `/by` clause.
      * @throws EventException If the EVENT command is missing the `/from` or `/to` clauses.
      */
-    public static Command parse(String fullCommand) throws UnknownCommandException, TodoException, DeadlineException, EventException {
+    public static Command parse(String fullCommand)
+            throws UnknownCommandException, TodoException, DeadlineException, EventException {
         String[] inputParts = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.toCommandType(inputParts[0]);
 

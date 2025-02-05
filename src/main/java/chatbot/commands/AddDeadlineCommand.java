@@ -1,9 +1,10 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.Ui;
 import chatbot.exceptions.DeadlineException;
+import chatbot.tasks.Deadline;
+import chatbot.tasks.TaskList;
 
 /**
  * Represents a command to add a deadline task to the task list.
@@ -16,7 +17,8 @@ public class AddDeadlineCommand extends Command {
     /**
      * Constructs an {@code AddDeadlineCommand} with the specified input.
      *
-     * @param input The input string containing the task description and the deadline in the format: "description /by date".
+     * @param input The input string containing the task
+     *     description and the deadline in the format: "description /by date".
      */
     public AddDeadlineCommand(String input) {
         this.input = input;
@@ -37,14 +39,17 @@ public class AddDeadlineCommand extends Command {
         if (!input.contains(" /by ")) {
             throw new DeadlineException("The description of a deadline must include a /by clause.");
         }
+
         String[] details = input.split(" /by ", 2);
         Deadline deadline = new Deadline(details[0], details[1]);
         tasks.add(deadline);
+
         ui.showMessage("Got it. I've added this task:");
         ui.showMessage("  " + deadline);
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
     }
 }
+
 
 

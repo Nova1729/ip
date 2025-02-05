@@ -1,9 +1,10 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.Ui;
 import chatbot.exceptions.EventException;
+import chatbot.tasks.Event;
+import chatbot.tasks.TaskList;
 
 /**
  * Represents a command to add an event task to the task list.

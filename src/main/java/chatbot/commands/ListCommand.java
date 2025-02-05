@@ -1,8 +1,8 @@
 package chatbot.commands;
 
-import chatbot.tasks.*;
-import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.Ui;
+import chatbot.tasks.TaskList;
 
 /**
  * Represents a command to list all tasks currently stored in the task list.
