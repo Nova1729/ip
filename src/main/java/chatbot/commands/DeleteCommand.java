@@ -28,11 +28,12 @@ public class DeleteCommand extends Command {
      * @param tasks   The {@link TaskList} containing the tasks.
      * @param ui      The {@link Ui} responsible for user interaction.
      * @param storage The {@link Storage} that manages saving and loading of tasks.
+     * @return
      * @throws IndexOutOfBoundsException If the index is out of range.
-     * @throws Exception If an error occurs while saving the updated task list.
+     * @throws Exception                 If an error occurs while saving the updated task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if (index < 1 || index > tasks.size()) {
             throw new IndexOutOfBoundsException("Invalid task number.");
         }
@@ -41,6 +42,7 @@ public class DeleteCommand extends Command {
         ui.showMessage("  " + removedTask);
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
+        return null;
     }
 }
 

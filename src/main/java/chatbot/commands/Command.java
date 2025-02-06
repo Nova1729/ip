@@ -16,9 +16,10 @@ public abstract class Command {
      * @param tasks   The {@link TaskList} containing the current list of tasks.
      * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
+     * @return
      * @throws Exception If an error occurs during command execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws Exception;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws Exception;
 
     /**
      * Determines if the command is an exit command.

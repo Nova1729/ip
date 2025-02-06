@@ -60,6 +60,17 @@ public class Friday {
     public static void main(String[] args) {
         new Friday("CS2103T/CS2103T_chatBot_Tasks/Friday.txt").run();
     }
+
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            String response = command.execute(tasks, ui, storage);
+            return response;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
 }
 
 

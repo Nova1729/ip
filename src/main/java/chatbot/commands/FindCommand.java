@@ -29,9 +29,10 @@ public class FindCommand extends Command {
      * @param tasks   The {@link TaskList} containing all the tasks.
      * @param ui      The {@link Ui} responsible for user interaction.
      * @param storage The {@link Storage} that manages saving and loading of tasks (not used in this command).
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
 
         for (Task task : tasks.getTasks()) {
@@ -50,6 +51,7 @@ public class FindCommand extends Command {
             }
         }
         ui.showMessage("____________________________________________________________");
+        return null;
     }
 }
 

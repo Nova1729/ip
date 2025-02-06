@@ -31,11 +31,12 @@ public class AddEventCommand extends Command {
      * @param tasks   The {@link TaskList} containing the current list of tasks.
      * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
+     * @return
      * @throws EventException If the input does not contain the required "/from" and "/to" clauses.
-     * @throws Exception If an error occurs during saving tasks to storage.
+     * @throws Exception      If an error occurs during saving tasks to storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if (!input.contains(" /from ") || !input.contains(" /to ")) {
             throw new EventException("The description of an event must include /from and /to clauses.");
         }
@@ -46,6 +47,7 @@ public class AddEventCommand extends Command {
         ui.showMessage("  " + event);
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
+        return null;
     }
 }
 

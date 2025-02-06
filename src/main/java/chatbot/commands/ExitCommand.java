@@ -15,10 +15,12 @@ public class ExitCommand extends Command {
      * @param tasks   The {@link TaskList} containing the tasks (not used in this command).
      * @param ui      The {@link Ui} responsible for user interaction.
      * @param storage The {@link Storage} that manages saving and loading of tasks (not used in this command).
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showMessage("Bye. Hope to see you again soon!");
+        return null;
     }
 
     /**

@@ -31,11 +31,12 @@ public class AddDeadlineCommand extends Command {
      * @param tasks   The {@link TaskList} containing the current list of tasks.
      * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
+     * @return
      * @throws DeadlineException If the input does not contain the required "/by" clause.
-     * @throws Exception If an error occurs during saving tasks to storage.
+     * @throws Exception         If an error occurs during saving tasks to storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if (!input.contains(" /by ")) {
             throw new DeadlineException("The description of a deadline must include a /by clause.");
         }
@@ -48,6 +49,7 @@ public class AddDeadlineCommand extends Command {
         ui.showMessage("  " + deadline);
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
+        return null;
     }
 }
 

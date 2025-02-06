@@ -30,11 +30,12 @@ public class AddTodoCommand extends Command {
      * @param tasks   The {@link TaskList} containing the current list of tasks.
      * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
+     * @return
      * @throws TodoException If the description of the todo is empty.
-     * @throws Exception If an error occurs during saving tasks to storage.
+     * @throws Exception     If an error occurs during saving tasks to storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if (description.trim().isEmpty()) {
             throw new TodoException("The description of a todo cannot be empty.");
         }
@@ -44,6 +45,7 @@ public class AddTodoCommand extends Command {
         ui.showMessage("  " + todo);
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
+        return null;
     }
 }
 
