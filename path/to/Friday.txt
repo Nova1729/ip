@@ -1,2 +1,2 @@
-T | 1 | abs
+T | 0 | abs
 T | 0 | read book
