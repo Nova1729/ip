@@ -17,8 +17,8 @@ public class AddDeadlineCommand extends Command {
     /**
      * Constructs an {@code AddDeadlineCommand} with the specified input.
      *
-     * @param input The input string containing the task
-     *     description and the deadline in the format: "description /by date".
+     * @param input The input string containing the task description and the deadline
+     *              in the format: "description /by date".
      */
     public AddDeadlineCommand(String input) {
         this.input = input;
@@ -29,9 +29,9 @@ public class AddDeadlineCommand extends Command {
      * Validates the input, creates the deadline task, and saves it to the storage.
      *
      * @param tasks   The {@link TaskList} containing the current list of tasks.
-     * @param ui      The {@link Ui} instance to handle user interactions.
+     * @param ui      The {@link Ui} instance (not used in this refactored version).
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
-     * @return
+     * @return A string response confirming the deadline has been added.
      * @throws DeadlineException If the input does not contain the required "/by" clause.
      * @throws Exception         If an error occurs during saving tasks to storage.
      */
@@ -45,13 +45,11 @@ public class AddDeadlineCommand extends Command {
         Deadline deadline = new Deadline(details[0], details[1]);
         tasks.add(deadline);
 
-        ui.showMessage("Got it. I've added this task:");
-        ui.showMessage("  " + deadline);
-        ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
-        return null;
+        return "Got it. I've added this task:\n  " + deadline + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }
+
 
 
 
