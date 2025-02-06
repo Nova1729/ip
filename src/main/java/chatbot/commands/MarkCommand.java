@@ -1,7 +1,7 @@
 package chatbot.commands;
 
-import chatbot.Storage;
 import chatbot.Ui;
+import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
@@ -11,25 +11,10 @@ import chatbot.tasks.TaskList;
 public class MarkCommand extends Command {
     private final int index;
 
-    /**
-     * Constructs a {@code MarkCommand} with the specified task index.
-     *
-     * @param index The index of the task to be marked as done (1-based index).
-     */
     public MarkCommand(int index) {
         this.index = index;
     }
 
-    /**
-     * Executes the mark command by marking the specified task as done.
-     *
-     * @param tasks   The {@link TaskList} containing the user's tasks.
-     * @param ui      The {@link Ui} responsible for user interaction.
-     * @param storage The {@link Storage} that manages saving and loading of tasks.
-     * @return
-     * @throws IndexOutOfBoundsException If the task index is out of valid range.
-     * @throws Exception                 If an unexpected error occurs while marking the task.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if (index < 1 || index > tasks.size()) {
@@ -37,12 +22,11 @@ public class MarkCommand extends Command {
         }
         Task task = tasks.get(index - 1);
         task.markAsDone();
-        ui.showMessage("Nice! I've marked this task as done:");
-        ui.showMessage("  " + task);
         storage.save(tasks.getTasks());
-        return null;
+        return "Nice! I've marked this task as done:\n  " + task;
     }
 }
+
 
 
 

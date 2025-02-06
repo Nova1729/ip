@@ -1,91 +1,52 @@
 package chatbot.GUI;
 
-import java.nio.file.Paths;
-import java.util.Objects;
-
-import chatbot.Friday;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import chatbot.Friday;
 
-public class MainWindow extends Application {
+public class MainWindow {
+    @FXML
     private ScrollPane scrollPane;
+    @FXML
     private VBox dialogContainer;
+    @FXML
     private TextField userInput;
+    @FXML
     private Button sendButton;
-    private Scene scene;
-    private Friday chatbot = new Friday(Paths.get("CS2103T", "CS2103T_chatBot_Tasks", "Friday.txt").toString());
 
-    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/images2.png")));
-    private Image botImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/images.png")));
+    private Friday chatbot;
 
-    @Override
-    public void start(Stage stage) {
-        // Set up components
-        scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/images2.png"));
+    private Image botImage = new Image(this.getClass().getResourceAsStream("/images/images.png"));
 
-        userInput = new TextField();
-        sendButton = new Button("Send");
-
-        AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-
-        scene = new Scene(mainLayout);
-
-        stage.setScene(scene);
-        stage.setTitle("Friday Chatbot");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
-
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        // Formatting window
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        userInput.setPrefWidth(325.0);
-        sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
-        AnchorPane.setBottomAnchor(sendButton, 1.0);
-        AnchorPane.setRightAnchor(sendButton, 1.0);
-        AnchorPane.setLeftAnchor(userInput, 1.0);
-        AnchorPane.setBottomAnchor(userInput, 1.0);
-
-        // Button action
-        sendButton.setOnAction(e -> handleUserInput());
-
-        stage.show();
+    @FXML
+    public void initialize() {
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    public void setChatbot(Friday chatbot) {
+        this.chatbot = chatbot;
+    }
+
+    @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        String response = chatbot.getResponse(input);
         if (!input.isEmpty()) {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getBotDialog(chatbot.getResponse(input), botImage)
+                    DialogBox.getBotDialog(response, botImage)
             );
             userInput.clear();
         }
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
+
+
 
 
 

@@ -2,8 +2,9 @@ package chatbot.GUI;
 
 public class Launcher {
     public static void main(String[] args) {
-        MainWindow.main(args);
+        Main.main(args); // Delegates the application launch to the Main class
     }
 }
+
 
 
