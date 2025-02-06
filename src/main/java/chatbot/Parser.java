@@ -82,7 +82,12 @@ public class Parser {
             if (inputParts.length < 2) {
                 throw new IllegalArgumentException("OOPS!!! The delete command requires a task number.");
             }
-            return new DeleteCommand(Integer.parseInt(inputParts[1]));
+            try {
+                int index = Integer.parseInt(inputParts[1]);
+                return new DeleteCommand(index);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("OOPS!!! The delete command requires a valid numeric task number.");
+            }
 
         case FIND:
             if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
