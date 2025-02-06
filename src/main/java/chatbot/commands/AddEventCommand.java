@@ -29,9 +29,9 @@ public class AddEventCommand extends Command {
      * Validates the input, creates the event task, and saves it to the storage.
      *
      * @param tasks   The {@link TaskList} containing the current list of tasks.
-     * @param ui      The {@link Ui} instance to handle user interactions.
+     * @param ui      The {@link Ui} instance (not used in this refactored version).
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
-     * @return
+     * @return A string response confirming the event task has been added.
      * @throws EventException If the input does not contain the required "/from" and "/to" clauses.
      * @throws Exception      If an error occurs during saving tasks to storage.
      */
@@ -43,12 +43,10 @@ public class AddEventCommand extends Command {
         String[] details = input.split(" /from | /to ", 3);
         Event event = new Event(details[0], details[1], details[2]);
         tasks.add(event);
-        ui.showMessage("Got it. I've added this task:");
-        ui.showMessage("  " + event);
-        ui.showMessage("Now you have " + tasks.size() + " tasks in the list.");
         storage.save(tasks.getTasks());
-        return null;
+        return "Got it. I've added this task:\n  " + event + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }
+
 
 
