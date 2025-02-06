@@ -1,5 +1,7 @@
 package chatbot.GUI;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import chatbot.Friday;
+import javafx.util.Duration;
 
 public class MainWindow {
     @FXML
@@ -35,15 +38,25 @@ public class MainWindow {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = chatbot.getResponse(input);
         if (!input.isEmpty()) {
+            String response = chatbot.getResponse(input);
+
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getBotDialog(response, botImage)
             );
+
             userInput.clear();
+
+            // Check if the chatbot intends to exit
+            if (chatbot.isExit()) {
+                PauseTransition delay = new PauseTransition(Duration.seconds(1)); // 1-second delay
+                delay.setOnFinished(event -> Platform.exit()); // Close the application after delay
+                delay.play();
+            }
         }
     }
+
 }
 
 

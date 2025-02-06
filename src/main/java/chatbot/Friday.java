@@ -12,6 +12,7 @@ public class Friday {
     private final Ui ui;
     private final Storage storage;
     private TaskList tasks;
+    private boolean isExit = false;
 
     /**
      * Constructs a Friday chatbot instance.
@@ -61,10 +62,19 @@ public class Friday {
         new Friday("CS2103T/CS2103T_chatBot_Tasks/Friday.txt").run();
     }
 
+    public boolean isExit() {
+        return isExit;
+    }
+
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
             String response = command.execute(tasks, ui, storage);
+
+            if (command.isExit()) {
+                isExit = true; // Set exit flag if the command is an exit command
+            }
+
             return response;
         } catch (Exception e) {
             return e.getMessage();
