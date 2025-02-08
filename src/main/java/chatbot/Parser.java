@@ -52,7 +52,7 @@ public class Parser {
             if (inputParts.length < 2) {
                 throw new IllegalArgumentException("OOPS!!! The mark command requires a task number.");
             }
-            return new MarkCommand(Integer.parseInt(inputParts[1]));
+            return new MarkCommand(inputParts[1]);
 
         case UNMARK:
             if (inputParts.length < 2) {
