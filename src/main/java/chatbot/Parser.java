@@ -79,15 +79,11 @@ public class Parser {
             return new AddEventCommand(inputParts[1]);
 
         case DELETE:
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new IllegalArgumentException("OOPS!!! The delete command requires a task number.");
             }
-            try {
-                int index = Integer.parseInt(inputParts[1]);
-                return new DeleteCommand(index);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("OOPS!!! The delete command requires a valid numeric task number.");
-            }
+            return new DeleteCommand(inputParts[1]); // Pass the input as a string
+
 
         case FIND:
             if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
