@@ -5,6 +5,7 @@ import chatbot.Ui;
 import chatbot.exceptions.EventException;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
+import chatbot.check.CheckEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,25 +45,11 @@ public class AddEventCommand extends Command {
 
         List<Event> events = new ArrayList<>();
         for (String part : eventParts) {
-            // Check if input contains /from and /to
-            if (!part.contains(" /from ") || !part.contains(" /to ")) {
-                throw new EventException("Each event description must include /from and /to clauses." +
-                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
-            }
-
-            // Extract description, start, and end times
-            String[] details = part.trim().split(" /from | /to ", 3);
-            if (details.length < 3 || details[0].isEmpty() || details[1].isEmpty() || details[2].isEmpty()) {
-                throw new EventException("Each event must have a valid description, start time, and end time." +
-                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
-            }
-
-            // Keep the input times as they are without reformatting
-            String startTime = details[1].trim();
-            String endTime = details[2].trim();
+            // Use the CheckEvent utility to validate and parse the input
+            String[] details = CheckEvent.validate(part);
 
             // Create the Event task and add it to the list
-            Event event = new Event(details[0].trim(), startTime, endTime);
+            Event event = new Event(details[0].trim(), details[1].trim(), details[2].trim());
             tasks.add(event);
             events.add(event);
         }

@@ -1,10 +1,11 @@
 package chatbot.commands;
 
+
 import chatbot.Storage;
 import chatbot.Ui;
-import chatbot.exceptions.DeadlineException;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
+import chatbot.check.CheckDeadline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +34,8 @@ public class AddDeadlineCommand extends Command {
 
         List<Deadline> deadlines = new ArrayList<>();
         for (String part : deadlineParts) {
-            // Validate the presence of the /by clause
-            if (!part.contains(" /by ")) {
-                throw new DeadlineException("The description of a deadline must include a /by clause." +
-                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
-            }
-
-            // Split the description and deadline date
-            String[] details = part.trim().split(" /by ", 2);
-            if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
-                throw new DeadlineException("Each deadline must have a valid description after the /by clause." +
-                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
-            }
+            // Use the CheckDeadline utility to validate and parse the input
+            String[] details = CheckDeadline.validate(part);
 
             // Create the Deadline task and add it to the list
             Deadline deadline = new Deadline(details[0].trim(), details[1].trim());
@@ -64,6 +55,7 @@ public class AddDeadlineCommand extends Command {
         return response.toString().trim();
     }
 }
+
 
 
 

@@ -6,42 +6,63 @@ import chatbot.exceptions.TodoException;
 import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Represents a command to add a todo task to the task list.
+ * Represents a command to add multiple todo tasks to the task list.
  */
 public class AddTodoCommand extends Command {
 
-    /** The description of the todo task. */
-    private final String description;
+    /** The input string containing multiple todo descriptions. */
+    private final String input;
 
     /**
-     * Constructs an {@code AddTodoCommand} with the specified description.
+     * Constructs an {@code AddTodoCommand} with the specified input.
      *
-     * @param description The description of the todo task.
+     * @param input The input string containing multiple todo descriptions separated by semicolons.
      */
-    public AddTodoCommand(String description) {
-        this.description = description;
+    public AddTodoCommand(String input) {
+        this.input = input;
     }
 
     /**
-     * Executes the command to add a todo task to the task list.
-     * Validates the description, creates the todo task, and saves it to the storage.
+     * Executes the command to add multiple todo tasks to the task list.
+     * Splits the input by semicolons and validates each todo description.
      *
      * @param tasks   The {@link TaskList} containing the current list of tasks.
      * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
-     * @return
-     * @throws TodoException If the description of the todo is empty.
+     * @return A response string confirming the added todo tasks.
+     * @throws TodoException If any of the todos have empty descriptions.
      * @throws Exception     If an error occurs during saving tasks to storage.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
-        Todo todo = new Todo(description);
-        tasks.add(todo);
+        // Split the input into multiple todos using ";" as a separator
+        String[] todoParts = input.split(";");
+
+        List<Todo> todos = new ArrayList<>();
+        for (String part : todoParts) {
+            String description = part.trim();
+
+            // Create the Todo task and add it to the list
+            Todo todo = new Todo(description);
+            tasks.add(todo);
+            todos.add(todo);
+        }
+
+        // Save the updated task list
         storage.save(tasks.getTasks());
-        return "Got it. I've added this task:\n  " + todo + "\nNow you have " + tasks.size() + " tasks in the list.";
+
+        // Generate the response for all added todos
+        StringBuilder response = new StringBuilder("Got it. I've added these tasks:\n");
+        for (Todo todo : todos) {
+            response.append("  ").append(todo).append("\n");
+        }
+        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
+        return response.toString().trim();
     }
 }
-
 
 
