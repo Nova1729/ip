@@ -45,11 +45,14 @@ public class Ui {
     /**
      * Displays a message to the user.
      *
-     * @param message The message to be displayed.
+     * @param messages The message to be displayed.
      */
-    public void showMessage(String message) {
-        System.out.println(message);
+    public void showMessage(String... messages) {
+        for (String message : messages) {
+            System.out.println(message);
+        }
     }
+
 
     /**
      * Displays an error message to the user.
