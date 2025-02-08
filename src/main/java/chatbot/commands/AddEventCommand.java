@@ -79,7 +79,3 @@ public class AddEventCommand extends Command {
         return response.toString().trim();
     }
 }
-
-
-
-

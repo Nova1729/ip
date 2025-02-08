@@ -35,13 +35,15 @@ public class AddDeadlineCommand extends Command {
         for (String part : deadlineParts) {
             // Validate the presence of the /by clause
             if (!part.contains(" /by ")) {
-                throw new DeadlineException("The description of a deadline must include a /by clause.");
+                throw new DeadlineException("The description of a deadline must include a /by clause." +
+                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
             }
 
             // Split the description and deadline date
             String[] details = part.trim().split(" /by ", 2);
             if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
-                throw new DeadlineException("Each deadline must have a valid description and /by clause.");
+                throw new DeadlineException("Each deadline must have a valid description after the /by clause." +
+                        " If you want to add multiple events all at once, ensure that each event is separated by '; '");
             }
 
             // Create the Deadline task and add it to the list
