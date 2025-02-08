@@ -58,7 +58,7 @@ public class Parser {
             if (inputParts.length < 2) {
                 throw new IllegalArgumentException("OOPS!!! The unmark command requires a task number.");
             }
-            return new UnmarkCommand(Integer.parseInt(inputParts[1]));
+            return new UnmarkCommand(inputParts[1]);
 
         case TODO:
             if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {

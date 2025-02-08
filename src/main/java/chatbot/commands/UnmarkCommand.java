@@ -2,27 +2,35 @@ package chatbot.commands;
 
 import chatbot.Ui;
 import chatbot.Storage;
+import chatbot.exceptions.UnmarkException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
+import chatbot.check.CheckUnmark;
 
 /**
  * Represents a command to unmark a specific task as not done.
  */
 public class UnmarkCommand extends Command {
-    private final int index;
+    /** The raw input string that should contain a numeric task index. */
+    private final String input;
 
-    public UnmarkCommand(int index) {
-        this.index = index;
+    /**
+     * Constructs an {@code UnmarkCommand} with the specified input.
+     *
+     * @param input The raw input that should contain the index of the task to be unmarked.
+     */
+    public UnmarkCommand(String input) {
+        this.input = input;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
-        if (index < 1 || index > tasks.size()) {
-            throw new IndexOutOfBoundsException("Invalid task number.");
-        }
+        int index = CheckUnmark.validate(input, tasks); // Delegate validation
+
         Task task = tasks.get(index - 1);
         task.markAsNotDone();
         storage.save(tasks.getTasks());
+
         return "OK, I've marked this task as not done yet:\n  " + task;
     }
 }
