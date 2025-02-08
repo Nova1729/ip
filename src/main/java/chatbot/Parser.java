@@ -67,14 +67,14 @@ public class Parser {
             return new AddTodoCommand(inputParts[1]);
 
         case DEADLINE:
-            if (inputParts.length < 2 || !inputParts[1].contains(" /by ")) {
-                throw new DeadlineException("OOPS!!! The description of a deadline must include a /by clause.");
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+                throw new DeadlineException("OOPS!!! The description of a deadline cannot be empty.");
             }
             return new AddDeadlineCommand(inputParts[1]);
 
         case EVENT:
-            if (inputParts.length < 2 || !inputParts[1].contains(" /from ") || !inputParts[1].contains(" /to ")) {
-                throw new EventException("OOPS!!! The description of an event must include /from and /to clauses.");
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+                throw new EventException("OOPS!!! The description of an event cannot be empty.");
             }
             return new AddEventCommand(inputParts[1]);
 

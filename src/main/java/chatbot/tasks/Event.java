@@ -1,34 +1,31 @@
 package chatbot.tasks;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /**
- * Represents an event task with a description, start date, and end date.
+ * Represents an event task with a description, start time, and end time.
  */
 public class Event extends Task {
-    private LocalDate from;
-    private LocalDate to;
+    private String from;
+    private String to;
 
     /**
      * Constructs an {@code Event} task.
      *
      * @param description The event description.
-     * @param from The start date of the event.
-     * @param to The end date of the event.
+     * @param from The start time of the event.
+     * @param to The end time of the event.
      */
     public Event(String description, String from, String to) {
         super(description);
-        this.from = LocalDate.parse(from); // Parse string to LocalDate
-        this.to = LocalDate.parse(to);     // Parse string to LocalDate
+        this.from = from; // Store the input as-is
+        this.to = to;     // Store the input as-is
     }
 
     /**
      * Constructs an {@code Event} task with completion status.
      *
      * @param description The event description.
-     * @param from The start date of the event.
-     * @param to The end date of the event.
+     * @param from The start time of the event.
+     * @param to The end time of the event.
      * @param isDone Whether the event task is completed.
      */
     public Event(String description, String from, String to, boolean isDone) {
@@ -38,25 +35,25 @@ public class Event extends Task {
         } else {
             super.markAsNotDone();
         }
-        this.from = LocalDate.parse(from); // Parse string to LocalDate
-        this.to = LocalDate.parse(to);     // Parse string to LocalDate
+        this.from = from; // Store the input as-is
+        this.to = to;     // Store the input as-is
     }
 
     /**
-     * Gets the start date of the event.
+     * Gets the start time of the event.
      *
-     * @return The start date.
+     * @return The start time.
      */
-    public LocalDate getFrom() {
+    public String getFrom() {
         return from;
     }
 
     /**
-     * Gets the end date of the event.
+     * Gets the end time of the event.
      *
-     * @return The end date.
+     * @return The end time.
      */
-    public LocalDate getTo() {
+    public String getTo() {
         return to;
     }
 
@@ -79,8 +76,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E][" + getStatusIcon() + "] " + this.getDescription()
-                + " (from: " + from.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + " to: " + to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + " (from: " + from + " to: " + to + ")";
     }
 }
 

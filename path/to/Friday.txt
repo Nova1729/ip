@@ -5,3 +5,9 @@ D | 0 | Finish homework | 2025-02-10
 D | 0 | Submit project | 2025-02-12
 D | 0 | Prepare for presentation | 2025-02-15
 D | 0 | Review notes | 2025-02-18
+E | 0 | project meeting | Mon 2pm | 4pm
+E | 0 | Workshop | Fri 10am | 12pm
+D | 0 | Submit project | 2025-02-12
+D | 0 | Submit project | 2025-02-12
+D | 0 | Prepare presentation | 2025-02-15
+D | 0 | Review notes | 2025-02-18
