@@ -23,8 +23,8 @@ public class MainWindow {
 
     private Friday chatbot;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/images2.png"));
-    private Image botImage = new Image(this.getClass().getResourceAsStream("/images/images.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/images2.png"));
+    private final Image botImage = new Image(this.getClass().getResourceAsStream("/images/images.png"));
 
     @FXML
     public void initialize() {
