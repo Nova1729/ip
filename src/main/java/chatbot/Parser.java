@@ -12,9 +12,12 @@ import chatbot.commands.ListCommand;
 import chatbot.commands.MarkCommand;
 import chatbot.commands.UnmarkCommand;
 import chatbot.exceptions.DeadlineException;
+import chatbot.exceptions.DeleteException;
 import chatbot.exceptions.EventException;
+import chatbot.exceptions.MarkException;
 import chatbot.exceptions.TodoException;
 import chatbot.exceptions.UnknownCommandException;
+import chatbot.exceptions.UnmarkException;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.Event;
 import chatbot.tasks.Task;
@@ -37,7 +40,7 @@ public class Parser {
      * @throws EventException If the EVENT command is missing the `/from` or `/to` clauses.
      */
     public static Command parse(String fullCommand)
-            throws UnknownCommandException, TodoException, DeadlineException, EventException {
+            throws UnknownCommandException, TodoException, DeadlineException, EventException, DeleteException, UnmarkException, MarkException {
 
         String[] inputParts = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.toCommandType(inputParts[0]);
@@ -51,13 +54,13 @@ public class Parser {
 
         case MARK:
             if (inputParts.length < 2) {
-                throw new IllegalArgumentException("OOPS!!! The mark command requires a task number.");
+                throw new MarkException("OOPS!!! The mark command requires a task number.");
             }
             return new MarkCommand(inputParts[1]);
 
         case UNMARK:
             if (inputParts.length < 2) {
-                throw new IllegalArgumentException("OOPS!!! The unmark command requires a task number.");
+                throw new UnmarkException("OOPS!!! The unmark command requires a task number.");
             }
             return new UnmarkCommand(inputParts[1]);
 
@@ -81,7 +84,7 @@ public class Parser {
 
         case DELETE:
             if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
-                throw new IllegalArgumentException("OOPS!!! The delete command requires a task number.");
+                throw new DeleteException("OOPS!!! The delete command requires a task number.");
             }
             return new DeleteCommand(inputParts[1]); // Pass the input as a string
 

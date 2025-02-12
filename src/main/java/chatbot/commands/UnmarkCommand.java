@@ -1,6 +1,5 @@
 package chatbot.commands;
 
-import chatbot.Ui;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -25,9 +24,8 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui instance cannot be null";
         assert storage != null : "Storage instance cannot be null";
 
         int index = CheckUnmark.validate(input, tasks);
