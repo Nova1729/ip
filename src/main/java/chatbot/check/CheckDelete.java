@@ -17,6 +17,9 @@ public class CheckDelete {
      * @throws DeleteException If the input is not numeric or the index is out of range.
      */
     public static int validate(String input, TaskList tasks) throws DeleteException {
+        assert input != null : "Input should not be null";
+        assert tasks != null : "Task list should not be null";
+
         int index;
 
         // Check if input is numeric

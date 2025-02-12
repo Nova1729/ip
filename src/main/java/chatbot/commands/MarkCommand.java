@@ -23,9 +23,15 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Storage storage) throws Exception {
-        int index = CheckMark.validate(input, tasks); // Delegate validation
+        assert tasks != null : "TaskList cannot be null";
+        assert storage != null : "Storage instance cannot be null";
+
+        int index = CheckMark.validate(input, tasks);
+        assert index > 0 && index <= tasks.size() : "Index must be within valid range";
 
         Task task = tasks.get(index - 1);
+        assert task != null : "Task at index " + index + " should not be null";
+
         task.markAsDone();
         storage.save(tasks.getTasks());
 

@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
      * @param input The raw input that should contain the index of the task to be deleted.
      */
     public DeleteCommand(String input) {
+        assert input != null && !input.trim().isEmpty() : "DeleteCommand input cannot be null or empty";
         this.input = input;
     }
 
@@ -34,11 +35,17 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws Exception {
-        int index = CheckDelete.validate(input, tasks); // Delegate validation
+        assert tasks != null : "TaskList cannot be null";
+        assert storage != null : "Storage cannot be null";
+
+        int index = CheckDelete.validate(input, tasks);
+
+        assert index >= 1 && index <= tasks.size() : "Index should be within valid task list range";
 
         Task removedTask = tasks.remove(index - 1);
         storage.save(tasks.getTasks());
 
+        assert removedTask != null : "Removed task should not be null";
         return "Noted. I've removed this task:\n  " + removedTask + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

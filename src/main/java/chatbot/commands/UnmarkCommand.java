@@ -18,14 +18,22 @@ public class UnmarkCommand extends Command {
      * @param input The raw input that should contain the index of the task to be unmarked.
      */
     public UnmarkCommand(String input) {
+        assert input != null && !input.trim().isEmpty() : "Input for UnmarkCommand cannot be null or empty";
+
         this.input = input;
     }
 
     @Override
     public String execute(TaskList tasks, Storage storage) throws Exception {
-        int index = CheckUnmark.validate(input, tasks); // Delegate validation
+        assert tasks != null : "TaskList cannot be null";
+        assert storage != null : "Storage instance cannot be null";
+
+        int index = CheckUnmark.validate(input, tasks);
+        assert index > 0 && index <= tasks.size() : "Index must be within valid range";
 
         Task task = tasks.get(index - 1);
+        assert task != null : "Task at index " + index + " should not be null";
+
         task.markAsNotDone();
         storage.save(tasks.getTasks());
 

@@ -25,6 +25,8 @@ public class AddEventCommand extends Command {
      *              each in the format: "description /from start_time /to end_time".
      */
     public AddEventCommand(String input) {
+        assert input != null && !input.trim().isEmpty() : "Input for AddEventCommand cannot be null or empty";
+
         this.input = input;
     }
 
@@ -39,24 +41,27 @@ public class AddEventCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws Exception {
-        // Split the input into multiple events using ";" as a separator
+        assert tasks != null : "TaskList cannot be null";
+        assert storage != null : "Storage instance cannot be null";
+
         String[] eventParts = input.split(";");
+        assert eventParts.length > 0 : "Event input should not result in an empty array";
 
         List<Event> events = new ArrayList<>();
         for (String part : eventParts) {
-            // Use the CheckEvent utility to validate and parse the input
-            String[] details = CheckEvent.validate(part);
+            assert part != null && !part.trim().isEmpty() : "Each event entry should not be null or empty";
 
-            // Create the Event task and add it to the list
+            String[] details = CheckEvent.validate(part);
+            assert details.length == 3 : "Validated event details should have exactly three elements (description, start time, and end time)";
+
             Event event = new Event(details[0].trim(), details[1].trim(), details[2].trim());
+
             tasks.add(event);
             events.add(event);
         }
 
-        // Save tasks
         storage.save(tasks.getTasks());
-
-        // Generate response
+        assert tasks.size() > 0 : "TaskList should have at least one task after adding events";
         return AddEventResponse.generateResponse(events, tasks);
     }
 }
