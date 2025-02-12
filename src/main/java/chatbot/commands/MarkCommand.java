@@ -1,6 +1,5 @@
 package chatbot.commands;
 
-import chatbot.Ui;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -23,13 +22,11 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui instance cannot be null";
         assert storage != null : "Storage instance cannot be null";
 
         int index = CheckMark.validate(input, tasks);
-
         assert index > 0 && index <= tasks.size() : "Index must be within valid range";
 
         Task task = tasks.get(index - 1);

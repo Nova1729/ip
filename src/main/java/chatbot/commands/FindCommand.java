@@ -1,7 +1,6 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
@@ -20,7 +19,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         assert tasks != null : "TaskList cannot be null";
 
         ArrayList<Task> matchingTasks = new ArrayList<>();
@@ -39,7 +38,6 @@ public class FindCommand extends Command {
         }
 
         assert !response.isEmpty() : "Response should not be empty if matches are found";
-
         return response.toString().trim();
     }
 }
