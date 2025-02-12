@@ -14,6 +14,8 @@ public class CheckDeadline {
      * @throws DeadlineException If the input does not meet the required format.
      */
     public static String[] validate(String part) throws DeadlineException {
+        assert part != null : "Input deadline task cannot be null";
+
         // Check if the input contains the /by clause
         if (!part.contains(" /by ")) {
             throw new DeadlineException("The description of a deadline must include a /by clause." +
