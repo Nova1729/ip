@@ -23,6 +23,8 @@ public class AddTodoCommand extends Command {
      * @param input The input string containing multiple todo descriptions separated by semicolons.
      */
     public AddTodoCommand(String input) {
+        assert input != null && !input.trim().isEmpty() : "Input for AddTodoCommand cannot be null or empty";
+
         this.input = input;
     }
 
@@ -39,23 +41,27 @@ public class AddTodoCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
-        // Split the input into multiple todos using ";" as a separator
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui instance cannot be null";
+        assert storage != null : "Storage instance cannot be null";
+
         String[] todoParts = input.split(";");
+        assert todoParts.length > 0 : "Todo input should not result in an empty array";
 
         List<Todo> todos = new ArrayList<>();
         for (String part : todoParts) {
-            String description = part.trim();
+            assert part != null && !part.trim().isEmpty() : "Each todo entry should not be null or empty";
 
-            // Create the Todo task and add it to the list
+            String description = part.trim();
             Todo todo = new Todo(description);
+
             tasks.add(todo);
             todos.add(todo);
         }
 
-        // Save the updated task list
         storage.save(tasks.getTasks());
+        assert tasks.size() > 0 : "TaskList should have at least one task after adding todos";
 
-        // Generate the response for all added todos
         StringBuilder response = new StringBuilder("Got it. I've added these tasks:\n");
         for (Todo todo : todos) {
             response.append("  ").append(todo).append("\n");

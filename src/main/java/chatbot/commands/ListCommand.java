@@ -19,10 +19,16 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui instance cannot be null";
+
         StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             response.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
         }
+
+        assert !response.isEmpty() : "Response should not be empty";
+
         return response.toString().trim(); // Return the response string
     }
 }
