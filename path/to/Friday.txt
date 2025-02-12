@@ -22,3 +22,17 @@ E | 0 | Workshop | Fri 10am | 12pm
 T | 0 | aasas
 T | 0 | todo rgwfw
 T | 0 | todo wwefwef
+D | 0 | File taxes | 2025-03-01
+E | 0 | project meeting | Mon 2pm | 4pm
+E | 0 | Workshop | Fri 10am | 12pm
+D | 0 | Finish CS2103T Assignment | 2025-03-15
+D | 0 | Submit Lab Report | 2025-02-25
+D | 0 | Complete Essay | 2025-03-10
+D | 0 | Review Notes | 2025-03-18
+D | 0 | Submit Lab Report | 2025-02-25
+D | 0 | Complete Essay | 2025-03-10
+D | 0 | Review Notes | 2025-03-18
+E | 0 | Team Discussion | Sunday 5pm | 6pm
+E | 0 | Workshop | Tuesday 10am | 12pm
+E | 0 | Conference | Wednesday 1pm | 3pm
+E | 0 | Meeting | Monday 2pm | 4pm

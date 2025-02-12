@@ -1,8 +1,6 @@
 package chatbot.commands;
 
-import chatbot.Ui;
 import chatbot.Storage;
-import chatbot.exceptions.UnmarkException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckUnmark;
@@ -24,7 +22,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         int index = CheckUnmark.validate(input, tasks); // Delegate validation
 
         Task task = tasks.get(index - 1);

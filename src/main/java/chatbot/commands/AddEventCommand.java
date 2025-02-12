@@ -1,8 +1,8 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.exceptions.EventException;
+import chatbot.responses.AddEventResponse;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckEvent;
@@ -32,14 +32,13 @@ public class AddEventCommand extends Command {
      * Executes the command to add multiple event tasks to the task list.
      *
      * @param tasks   The {@link TaskList} containing the current list of tasks.
-     * @param ui      The {@link Ui} instance (not used in this version).
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
      * @return A string response confirming the event tasks have been added.
      * @throws EventException If any input does not contain the required "/from" and "/to" clauses.
      * @throws Exception      If an error occurs during saving tasks to storage.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         // Split the input into multiple events using ";" as a separator
         String[] eventParts = input.split(";");
 
@@ -58,11 +57,6 @@ public class AddEventCommand extends Command {
         storage.save(tasks.getTasks());
 
         // Generate response
-        StringBuilder response = new StringBuilder("Got it. I've added these tasks:\n");
-        for (Event event : events) {
-            response.append("  ").append(event).append("\n");
-        }
-        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
-        return response.toString().trim();
+        return AddEventResponse.generateResponse(events, tasks);
     }
 }

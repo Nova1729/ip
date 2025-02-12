@@ -1,8 +1,8 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.exceptions.TodoException;
+import chatbot.responses.AddTodoResponse;
 import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
 
@@ -31,14 +31,13 @@ public class AddTodoCommand extends Command {
      * Splits the input by semicolons and validates each todo description.
      *
      * @param tasks   The {@link TaskList} containing the current list of tasks.
-     * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} instance to handle saving/loading tasks from storage.
      * @return A response string confirming the added todo tasks.
      * @throws TodoException If any of the todos have empty descriptions.
      * @throws Exception     If an error occurs during saving tasks to storage.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         // Split the input into multiple todos using ";" as a separator
         String[] todoParts = input.split(";");
 
@@ -55,13 +54,7 @@ public class AddTodoCommand extends Command {
         // Save the updated task list
         storage.save(tasks.getTasks());
 
-        // Generate the response for all added todos
-        StringBuilder response = new StringBuilder("Got it. I've added these tasks:\n");
-        for (Todo todo : todos) {
-            response.append("  ").append(todo).append("\n");
-        }
-        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
-        return response.toString().trim();
+        return AddTodoResponse.generate(todos, tasks);
     }
 }
 
