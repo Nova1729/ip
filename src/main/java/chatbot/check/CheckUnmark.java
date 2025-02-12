@@ -17,6 +17,8 @@ public class CheckUnmark {
      * @throws UnmarkException If the input is not numeric or the index is out of range.
      */
     public static int validate(String input, TaskList tasks) throws UnmarkException {
+        assert input != null : "Input task number cannot be null";
+
         int index;
 
         // Check if input is numeric
