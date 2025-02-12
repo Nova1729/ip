@@ -1,7 +1,6 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.tasks.TaskList;
 
 /**
@@ -13,14 +12,11 @@ public class ListCommand extends Command {
      * Executes the list command by displaying all tasks in the task list.
      *
      * @param tasks   The {@link TaskList} containing the user's tasks.
-     * @param ui      The {@link Ui} responsible for user interaction.
      * @param storage The {@link Storage} that manages saving and loading of tasks (not used in this command).
-     * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui instance cannot be null";
 
         StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
@@ -28,7 +24,6 @@ public class ListCommand extends Command {
         }
 
         assert !response.isEmpty() : "Response should not be empty";
-
         return response.toString().trim(); // Return the response string
     }
 }

@@ -2,7 +2,7 @@ package chatbot.commands;
 
 
 import chatbot.Storage;
-import chatbot.Ui;
+import chatbot.responses.AddDeadlineResponse;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckDeadline;
@@ -30,9 +30,8 @@ public class AddDeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui instance cannot be null";
         assert storage != null : "Storage instance cannot be null";
 
         String[] deadlineParts = input.split(";");
@@ -52,15 +51,7 @@ public class AddDeadlineCommand extends Command {
         }
 
         storage.save(tasks.getTasks());
-        assert tasks.size() > 0 : "TaskList should have at least one task after adding deadlines";
-
-        // Generate the response for all added deadlines
-        StringBuilder response = new StringBuilder("Got it. I've added these tasks:\n");
-        for (Deadline deadline : deadlines) {
-            response.append("  ").append(deadline).append("\n");
-        }
-        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
-        return response.toString().trim();
+        return AddDeadlineResponse.generate(deadlines, tasks.size());
     }
 }
 
