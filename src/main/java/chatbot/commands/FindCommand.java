@@ -20,7 +20,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         List<Task> matchingTasks = tasks.getTasks().stream()
                 .filter(task -> task.getDescription().contains(keyword))
                 .toList();
