@@ -5,7 +5,8 @@ import chatbot.Ui;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a command to find tasks that contain a specified keyword in their description.
@@ -19,20 +20,17 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : tasks.getTasks()) {
-            if (task.getDescription().contains(keyword)) {
-                matchingTasks.add(task);
-            }
-        }
+        List<Task> matchingTasks = tasks.getTasks().stream()
+                .filter(task -> task.getDescription().contains(keyword))
+                .toList();
+
         if (matchingTasks.isEmpty()) {
             return "No matching tasks found.";
         }
-        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
-        for (int i = 0; i < matchingTasks.size(); i++) {
-            response.append((i + 1)).append(". ").append(matchingTasks.get(i)).append("\n");
-        }
-        return response.toString().trim();
+
+        return matchingTasks.stream()
+                .map(task -> (matchingTasks.indexOf(task) + 1) + ". " + task)
+                .collect(Collectors.joining("\n", "Here are the matching tasks in your list:\n", ""));
     }
 }
 
