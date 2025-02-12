@@ -1,30 +1,8 @@
 T | 0 | read book
 D | 0 | Finish homework | 2025-02-10
 D | 0 | Submit project | 2025-02-12
-D | 0 | Prepare for presentation | 2025-02-15
-D | 0 | Review notes | 2025-02-18
-E | 0 | project meeting | Mon 2pm | 4pm
-E | 0 | Workshop | Fri 10am | 12pm
-D | 0 | Submit project | 2025-02-12
-D | 0 | Submit project | 2025-02-12
-D | 0 | Prepare presentation | 2025-02-15
-D | 0 | Review notes | 2025-02-18
-D | 0 | Submit report | 2025-12-02
-D | 0 | return book | 2038-12-21
-D | 0 | File taxes | 2025-03-01
 D | 0 | Renew license | 2025-04-15
 D | 0 | File taxes | 2025-03-01
 D | 0 | Renew license | 2025-04-15
 E | 0 | project meeting | Mon 2pm | 4pm
 E | 0 | Workshop | Fri 10am | 12pm
-T | 1 | aasas
-T | 0 | todo wwefwef
-E | 0 | project meeting | Mon 2pm | 4pm
-E | 0 | Workshop | Fri 10am | 12pm
-D | 0 | File taxes | 2025-03-01
-T | 0 | Buy groceries
-T | 0 | Clean the room
-T | 0 | Finish homework
-D | 0 | Pay bills | 2025-03-01
-D | 0 | Finish project | 2025-03-10
-D | 0 | Book flight tickets | 2025-04-05

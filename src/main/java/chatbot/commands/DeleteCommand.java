@@ -1,7 +1,6 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.exceptions.DeleteException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -29,14 +28,13 @@ public class DeleteCommand extends Command {
      * generating a confirmation message, and updating the storage.
      *
      * @param tasks   The {@link TaskList} containing the tasks.
-     * @param ui      The {@link Ui} instance to handle user interactions.
      * @param storage The {@link Storage} that manages saving and loading of tasks.
      * @return A string response confirming the task has been deleted.
      * @throws DeleteException If the input is not numeric or the index is out of range.
      * @throws Exception       If an error occurs while saving the updated task list.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Storage storage) throws Exception {
         assert tasks != null : "TaskList cannot be null";
         assert storage != null : "Storage cannot be null";
 
@@ -48,7 +46,6 @@ public class DeleteCommand extends Command {
         storage.save(tasks.getTasks());
 
         assert removedTask != null : "Removed task should not be null";
-
         return "Noted. I've removed this task:\n  " + removedTask + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

@@ -1,7 +1,6 @@
 package chatbot.commands;
 
 import chatbot.Storage;
-import chatbot.Ui;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
@@ -35,6 +34,3 @@ public class FindCommand extends Command {
                 .collect(Collectors.joining("\n", "Here are the matching tasks in your list:\n", ""));
     }
 }
-
-
-
