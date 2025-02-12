@@ -13,7 +13,6 @@ public class ListCommand extends Command {
      *
      * @param tasks   The {@link TaskList} containing the user's tasks.
      * @param storage The {@link Storage} that manages saving and loading of tasks (not used in this command).
-     * @return
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
