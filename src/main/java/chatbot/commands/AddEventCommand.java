@@ -6,6 +6,7 @@ import chatbot.responses.AddEventResponse;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckEvent;
+import chatbot.checkDuplicates.CheckEventDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,9 @@ public class AddEventCommand extends Command {
         String[] eventParts = input.split(";");
         assert eventParts.length > 0 : "Event input should not result in an empty array";
 
-        List<Event> events = new ArrayList<>();
+        List<Event> addedEvents = new ArrayList<>();
+        List<Event> duplicateEvents = new ArrayList<>();
+
         for (String part : eventParts) {
             assert part != null && !part.trim().isEmpty() : "Each event entry should not be null or empty";
 
@@ -56,12 +59,17 @@ public class AddEventCommand extends Command {
 
             Event event = new Event(details[0].trim(), details[1].trim(), details[2].trim());
 
+            if (CheckEventDuplicates.isDuplicate(tasks, event)) {
+                duplicateEvents.add(event);
+                continue; // Skip adding duplicate events
+            }
+
             tasks.add(event);
-            events.add(event);
+            addedEvents.add(event);
         }
 
         storage.save(tasks.getTasks());
-        assert tasks.size() > 0 : "TaskList should have at least one task after adding events";
-        return AddEventResponse.generateResponse(events, tasks);
+
+        return AddEventResponse.generateResponse(addedEvents, duplicateEvents, tasks);
     }
 }

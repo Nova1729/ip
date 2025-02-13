@@ -12,3 +12,4 @@ T | 0 | Clean the room
 T | 0 | Finish homework
 D | 0 | Submit Report | 2025-03-10
 D | 0 | Complete CS2103T Assignment | 2025-03-15
+E | 0 | Team Meeting | 2025-02-15 14:00 | 2025-02-15 16:00
