@@ -1,11 +1,11 @@
 package chatbot.commands;
 
-
 import chatbot.Storage;
 import chatbot.responses.AddDeadlineResponse;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckDeadline;
+import chatbot.checkDuplicates.CheckDeadlineDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,9 @@ public class AddDeadlineCommand extends Command {
         String[] deadlineParts = input.split(";");
         assert deadlineParts.length > 0 : "Deadline input should not result in an empty array";
 
-        List<Deadline> deadlines = new ArrayList<>();
+        List<Deadline> addedDeadlines = new ArrayList<>();
+        List<Deadline> duplicateDeadlines = new ArrayList<>();
+
         for (String part : deadlineParts) {
             assert part != null && !part.trim().isEmpty() : "Each deadline entry should not be null or empty";
 
@@ -46,16 +48,19 @@ public class AddDeadlineCommand extends Command {
 
             Deadline deadline = new Deadline(details[0].trim(), details[1].trim());
 
-            tasks.add(deadline);
-            deadlines.add(deadline);
+            // Check for duplicates before adding
+            if (CheckDeadlineDuplicates.isDuplicate(tasks, deadline)) {
+                duplicateDeadlines.add(deadline);
+            } else {
+                tasks.add(deadline);
+                addedDeadlines.add(deadline);
+            }
         }
 
         storage.save(tasks.getTasks());
-        return AddDeadlineResponse.generate(deadlines, tasks.size());
+        return AddDeadlineResponse.generate(addedDeadlines, duplicateDeadlines, tasks.size());
     }
 }
-
-
 
 
 
