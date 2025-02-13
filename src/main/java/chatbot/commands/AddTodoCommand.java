@@ -5,6 +5,7 @@ import chatbot.exceptions.TodoException;
 import chatbot.responses.AddTodoResponse;
 import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
+import chatbot.checkDuplicates.CheckTodoDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,6 @@ public class AddTodoCommand extends Command {
      */
     public AddTodoCommand(String input) {
         assert input != null && !input.trim().isEmpty() : "Input for AddTodoCommand cannot be null or empty";
-
         this.input = input;
     }
 
@@ -47,19 +47,24 @@ public class AddTodoCommand extends Command {
         assert todoParts.length > 0 : "Todo input should not result in an empty array";
 
         List<Todo> todos = new ArrayList<>();
+        List<Todo> duplicateTodos = new ArrayList<>();
+
         for (String part : todoParts) {
             assert part != null && !part.trim().isEmpty() : "Each todo entry should not be null or empty";
 
             String description = part.trim();
             Todo todo = new Todo(description);
 
-            tasks.add(todo);
-            todos.add(todo);
+            if (CheckTodoDuplicates.isDuplicate(tasks, todo)) {
+                duplicateTodos.add(todo);
+            } else {
+                tasks.add(todo);
+                todos.add(todo);
+            }
         }
 
         storage.save(tasks.getTasks());
-        assert tasks.size() > 0 : "TaskList should have at least one task after adding todos";
-        return AddTodoResponse.generate(todos, tasks);
+        return AddTodoResponse.generate(todos, duplicateTodos, tasks);
     }
 }
 
