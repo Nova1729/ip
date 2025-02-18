@@ -5,7 +5,7 @@ import chatbot.responses.AddDeadlineResponse;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckDeadline;
-import chatbot.checkDuplicates.CheckDeadlineDuplicates;
+import chatbot.checkduplicates.CheckDeadlineDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class AddDeadlineCommand extends Command {
         // originally my code for this execute method was too long, so I asked chatGPT to
         // help me break the method into different classes (AddDeadlineResponse
         // and CheckDeadlineDuplicates) that are placed in different packages
-        // (responses and checkDuplicates). The same was done for AddEventCommand and
+        // (responses and checkduplicates). The same was done for AddEventCommand and
         // AddTodoCommand.
         // Also, the JavaDoc for the different commands are quite repetitive, so I wrote for
         // class and asked chatGPT to generate the rest for me.

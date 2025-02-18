@@ -5,7 +5,7 @@ import chatbot.exceptions.TodoException;
 import chatbot.responses.AddTodoResponse;
 import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
-import chatbot.checkDuplicates.CheckTodoDuplicates;
+import chatbot.checkduplicates.CheckTodoDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;

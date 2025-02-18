@@ -1,4 +1,4 @@
-package chatbot.GUI;
+package chatbot.gui;
 
 import java.io.IOException;
 import javafx.collections.FXCollections;

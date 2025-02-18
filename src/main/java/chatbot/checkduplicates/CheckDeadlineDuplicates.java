@@ -1,4 +1,4 @@
-package chatbot.checkDuplicates;
+package chatbot.checkduplicates;
 
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;

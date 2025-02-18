@@ -1,4 +1,4 @@
-package chatbot.GUI;
+package chatbot.gui;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;

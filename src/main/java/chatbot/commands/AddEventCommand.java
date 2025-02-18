@@ -6,7 +6,7 @@ import chatbot.responses.AddEventResponse;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
 import chatbot.check.CheckEvent;
-import chatbot.checkDuplicates.CheckEventDuplicates;
+import chatbot.checkduplicates.CheckEventDuplicates;
 
 import java.util.ArrayList;
 import java.util.List;

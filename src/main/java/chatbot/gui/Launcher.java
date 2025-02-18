@@ -1,4 +1,4 @@
-package chatbot.GUI;
+package chatbot.gui;
 
 public class Launcher {
     public static void main(String[] args) {
