@@ -1,21 +1,8 @@
 D | 0 | Finish homework | 2025-02-10
-D | 0 | Renew license | 2025-04-15
-D | 0 | File taxes | 2025-03-01
-D | 0 | Renew license | 2025-04-15
-E | 0 | project meeting | Mon 2pm | 4pm
-E | 0 | Workshop | Fri 10am | 12pm
-D | 0 | Pay bills | 2025-03-01
-D | 0 | Finish project | 2025-03-10
-D | 0 | Book flight tickets | 2025-04-05
-T | 0 | Buy groceries
-T | 0 | Clean the room
-T | 0 | Finish homework
-D | 0 | Submit Report | 2025-03-10
-D | 0 | Complete CS2103T Assignment | 2025-03-15
-E | 0 | Team Meeting | 2025-02-15 14:00 | 2025-02-15 16:00
-T | 0 | ffwwffw
-T | 0 | wrggwfw
-T | 0 | read book
-T | 0 | todo gwfwefewfwe
-T | 0 | todo fwwfwewweffew
-T | 0 | wfwfwe
+T | 0 | eat dinner
+D | 0 | Submit project | 2025-02-25
+D | 0 | Pay bills | 2025-03-05
+T | 0 | Submit lab report
+D | 0 | Submit report | 2025-03-01
+E | 0 | Team meeting | 2pm | 4pm
+T | 0 | Read a book
