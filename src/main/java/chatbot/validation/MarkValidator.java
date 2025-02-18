@@ -21,14 +21,12 @@ public class MarkValidator {
 
         int index;
 
-        // Check if input is numeric
         try {
             index = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new MarkException("OOPS!!! The mark command requires a valid numeric task number.");
         }
 
-        // Check if the index is within range
         if (index < 1 || index > tasks.size()) {
             throw new MarkException("OOPS!!! The task number provided is out of range.");
         }

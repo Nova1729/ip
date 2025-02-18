@@ -21,14 +21,12 @@ public class UnmarkValidator {
 
         int index;
 
-        // Check if input is numeric
         try {
             index = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new UnmarkException("OOPS!!! The unmark command requires a valid numeric task number.");
         }
 
-        // Check if the index is within range
         if (index < 1 || index > tasks.size()) {
             throw new UnmarkException("OOPS!!! The task number provided is out of range.");
         }

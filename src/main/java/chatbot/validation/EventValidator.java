@@ -23,7 +23,6 @@ public class EventValidator {
                     " If you want to add multiple events all at once, ensure that each event is separated by '; '");
         }
 
-        // Split the description, start time, and end time
         String[] details = part.trim().split(" /from | /to ", 3);
 
         if (details.length < 3 || details[0].isEmpty() || details[1].isEmpty() || details[2].isEmpty()) {
