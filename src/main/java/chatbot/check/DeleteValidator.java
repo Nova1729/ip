@@ -6,7 +6,7 @@ import chatbot.tasks.TaskList;
 /**
  * Utility class to validate delete command input.
  */
-public class CheckDelete {
+public class DeleteValidator {
 
     /**
      * Validates if the given input is a numeric task index and within the valid range.

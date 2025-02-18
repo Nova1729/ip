@@ -5,7 +5,7 @@ import chatbot.exceptions.EventException;
 /**
  * A utility class for validating event input strings.
  */
-public class CheckEvent {
+public class EventValidator {
 
     /**
      * Validates the input string for an event task.

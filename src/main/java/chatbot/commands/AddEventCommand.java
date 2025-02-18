@@ -5,8 +5,8 @@ import chatbot.exceptions.EventException;
 import chatbot.responses.AddEventResponse;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
-import chatbot.check.CheckEvent;
-import chatbot.checkduplicates.CheckEventDuplicates;
+import chatbot.check.EventValidator;
+import chatbot.checkduplicates.DuplicateEventChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +54,12 @@ public class AddEventCommand extends Command {
         for (String part : eventParts) {
             assert part != null && !part.trim().isEmpty() : "Each event entry should not be null or empty";
 
-            String[] details = CheckEvent.validate(part);
+            String[] details = EventValidator.validate(part);
             assert details.length == 3 : "Validated event details should have exactly three elements (description, start time, and end time)";
 
             Event event = new Event(details[0].trim(), details[1].trim(), details[2].trim());
 
-            if (CheckEventDuplicates.isDuplicate(tasks, event)) {
+            if (DuplicateEventChecker.isDuplicate(tasks, event)) {
                 duplicateEvents.add(event);
                 continue; // Skip adding duplicate events
             }

@@ -5,7 +5,7 @@ import chatbot.exceptions.TodoException;
 import chatbot.responses.AddTodoResponse;
 import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
-import chatbot.checkduplicates.CheckTodoDuplicates;
+import chatbot.checkduplicates.DuplicateTodoChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class AddTodoCommand extends Command {
             String description = part.trim();
             Todo todo = new Todo(description);
 
-            if (CheckTodoDuplicates.isDuplicate(tasks, todo)) {
+            if (DuplicateTodoChecker.isDuplicate(tasks, todo)) {
                 duplicateTodos.add(todo);
             } else {
                 tasks.add(todo);

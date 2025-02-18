@@ -5,7 +5,7 @@ import chatbot.exceptions.DeadlineException;
 /**
  * A utility class for validating deadline input strings.
  */
-public class CheckDeadline {
+public class DeadlineValidator {
 
     /**
      * Validates the input string for a deadline task.

@@ -6,7 +6,7 @@ import chatbot.tasks.TaskList;
 /**
  * Utility class to check for duplicate events in the task list.
  */
-public class CheckEventDuplicates {
+public class DuplicateEventChecker {
 
     /**
      * Checks if an event already exists in the task list.

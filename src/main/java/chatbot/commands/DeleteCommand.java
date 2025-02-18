@@ -4,7 +4,7 @@ import chatbot.Storage;
 import chatbot.exceptions.DeleteException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.CheckDelete;
+import chatbot.check.DeleteValidator;
 
 /**
  * Represents a command to delete a task from the task list.
@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         assert tasks != null : "TaskList cannot be null";
         assert storage != null : "Storage cannot be null";
 
-        int index = CheckDelete.validate(input, tasks);
+        int index = DeleteValidator.validate(input, tasks);
 
         assert index >= 1 && index <= tasks.size() : "Index should be within valid task list range";
 

@@ -6,7 +6,7 @@ import chatbot.tasks.Todo;
 /**
  * Utility class to check for duplicate todo tasks in the task list.
  */
-public class CheckTodoDuplicates {
+public class DuplicateTodoChecker {
 
     /**
      * Checks if a todo task already exists in the task list.

@@ -6,7 +6,7 @@ import chatbot.tasks.TaskList;
 /**
  * Utility class to check for duplicate deadlines in the task list.
  */
-public class CheckDeadlineDuplicates {
+public class DuplicateDeadlineChecker {
 
     /**
      * Checks if a deadline already exists in the task list.

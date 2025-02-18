@@ -3,7 +3,7 @@ package chatbot.commands;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.CheckMark;
+import chatbot.check.MarkValidator;
 
 /**
  * Represents a command to mark a specific task as done.
@@ -26,7 +26,7 @@ public class MarkCommand extends Command {
         assert tasks != null : "TaskList cannot be null";
         assert storage != null : "Storage instance cannot be null";
 
-        int index = CheckMark.validate(input, tasks);
+        int index = MarkValidator.validate(input, tasks);
         assert index > 0 && index <= tasks.size() : "Index must be within valid range";
 
         Task task = tasks.get(index - 1);

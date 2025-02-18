@@ -3,7 +3,7 @@ package chatbot.commands;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.CheckUnmark;
+import chatbot.check.UnmarkValidator;
 
 /**
  * Represents a command to unmark a specific task as not done.
@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
         assert tasks != null : "TaskList cannot be null";
         assert storage != null : "Storage instance cannot be null";
 
-        int index = CheckUnmark.validate(input, tasks);
+        int index = UnmarkValidator.validate(input, tasks);
         assert index > 0 && index <= tasks.size() : "Index must be within valid range";
 
         Task task = tasks.get(index - 1);

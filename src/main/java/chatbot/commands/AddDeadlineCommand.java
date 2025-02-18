@@ -1,11 +1,11 @@
 package chatbot.commands;
 
 import chatbot.Storage;
+import chatbot.checkduplicates.DuplicateDeadlineChecker;
 import chatbot.responses.AddDeadlineResponse;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
-import chatbot.check.CheckDeadline;
-import chatbot.checkduplicates.CheckDeadlineDuplicates;
+import chatbot.check.DeadlineValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class AddDeadlineCommand extends Command {
 
         // originally my code for this execute method was too long, so I asked chatGPT to
         // help me break the method into different classes (AddDeadlineResponse
-        // and CheckDeadlineDuplicates) that are placed in different packages
+        // and DuplicateDeadlineChecker) that are placed in different packages
         // (responses and checkduplicates). The same was done for AddEventCommand and
         // AddTodoCommand.
         // Also, the JavaDoc for the different commands are quite repetitive, so I wrote for
@@ -50,13 +50,13 @@ public class AddDeadlineCommand extends Command {
         for (String part : deadlineParts) {
             assert part != null && !part.trim().isEmpty() : "Each deadline entry should not be null or empty";
 
-            String[] details = CheckDeadline.validate(part);
+            String[] details = DeadlineValidator.validate(part);
             assert details.length == 2 : "Validated deadline details should have exactly two elements (description and due date)";
 
             Deadline deadline = new Deadline(details[0].trim(), details[1].trim());
 
             // Check for duplicates before adding
-            if (CheckDeadlineDuplicates.isDuplicate(tasks, deadline)) {
+            if (DuplicateDeadlineChecker.isDuplicate(tasks, deadline)) {
                 duplicateDeadlines.add(deadline);
             } else {
                 tasks.add(deadline);
