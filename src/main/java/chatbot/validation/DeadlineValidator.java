@@ -15,7 +15,7 @@ public class DeadlineValidator {
      */
     public static String[] validate(String part) throws DeadlineException {
         assert part != null : "Input deadline task cannot be null";
-        
+
         if (!part.contains(" /by ")) {
             throw new DeadlineException("The description of a deadline must include a /by clause." +
                     " If you want to add multiple deadlines all at once, ensure that each deadline is separated by '; '");

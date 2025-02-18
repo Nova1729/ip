@@ -151,7 +151,9 @@ Noted. I've removed this task:
 The chatbot prevents duplicate tasks from being added.
 
 **Example:**
+```
 todo Read a book; Read a book
+```
 
 **Expected Output:**
 ```
@@ -170,10 +172,14 @@ These todos were not added because they are duplicates:
 If you try to delete, mark, or unmark a task using an invalid number, the chatbot will handle it gracefully.
 
 **Example:**
+```
 delete 10
+```
 
 **Expected Output:**
+```
 Error: Task number 10 is out of range.
+```
 
 ---
 
