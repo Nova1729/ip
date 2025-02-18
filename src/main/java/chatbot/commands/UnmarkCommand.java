@@ -3,7 +3,7 @@ package chatbot.commands;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.UnmarkValidator;
+import chatbot.validation.UnmarkValidator;
 
 /**
  * Represents a command to unmark a specific task as not done.

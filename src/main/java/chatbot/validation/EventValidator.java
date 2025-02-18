@@ -1,4 +1,4 @@
-package chatbot.check;
+package chatbot.validation;
 
 import chatbot.exceptions.EventException;
 

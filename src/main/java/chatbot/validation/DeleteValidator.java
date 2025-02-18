@@ -1,4 +1,4 @@
-package chatbot.check;
+package chatbot.validation;
 
 import chatbot.exceptions.DeleteException;
 import chatbot.tasks.TaskList;
@@ -12,7 +12,7 @@ public class DeleteValidator {
      * Validates if the given input is a numeric task index and within the valid range.
      *
      * @param input The raw input string representing a task index.
-     * @param tasks The task list to check the index against.
+     * @param tasks The task list to validation the index against.
      * @return The valid integer index.
      * @throws DeleteException If the input is not numeric or the index is out of range.
      */

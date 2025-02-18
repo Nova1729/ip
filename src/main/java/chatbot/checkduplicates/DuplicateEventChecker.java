@@ -4,7 +4,7 @@ import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
 
 /**
- * Utility class to check for duplicate events in the task list.
+ * Utility class to validation for duplicate events in the task list.
  */
 public class DuplicateEventChecker {
 
@@ -12,7 +12,7 @@ public class DuplicateEventChecker {
      * Checks if an event already exists in the task list.
      *
      * @param taskList The list of tasks.
-     * @param event    The event task to check for duplication.
+     * @param event    The event task to validation for duplication.
      * @return true if the event already exists, false otherwise.
      */
     public static boolean isDuplicate(TaskList taskList, Event event) {

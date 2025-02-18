@@ -4,7 +4,7 @@ import chatbot.tasks.TaskList;
 import chatbot.tasks.Todo;
 
 /**
- * Utility class to check for duplicate todo tasks in the task list.
+ * Utility class to validation for duplicate todo tasks in the task list.
  */
 public class DuplicateTodoChecker {
 
@@ -12,7 +12,7 @@ public class DuplicateTodoChecker {
      * Checks if a todo task already exists in the task list.
      *
      * @param taskList The list of tasks.
-     * @param todo The todo task to check for duplication.
+     * @param todo The todo task to validation for duplication.
      * @return true if the todo already exists, false otherwise.
      */
     public static boolean isDuplicate(TaskList taskList, Todo todo) {

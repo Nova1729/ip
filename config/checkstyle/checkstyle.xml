@@ -211,7 +211,7 @@
 
     <module name="FallThrough">
       <!-- Warn about falling through to the next case statement.  Similar to
-      javac -Xlint:fallthrough, but the check is suppressed if a single-line comment
+      javac -Xlint:fallthrough, but the validation is suppressed if a single-line comment
       on the last non-blank line preceding the fallen-into case contains 'fall through' (or
       some other variants which we don't publicized to promote consistency).
       -->

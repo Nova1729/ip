@@ -5,7 +5,7 @@ import chatbot.exceptions.EventException;
 import chatbot.responses.AddEventResponse;
 import chatbot.tasks.Event;
 import chatbot.tasks.TaskList;
-import chatbot.check.EventValidator;
+import chatbot.validation.EventValidator;
 import chatbot.checkduplicates.DuplicateEventChecker;
 
 import java.util.ArrayList;

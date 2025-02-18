@@ -3,7 +3,7 @@ package chatbot.commands;
 import chatbot.Storage;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.MarkValidator;
+import chatbot.validation.MarkValidator;
 
 /**
  * Represents a command to mark a specific task as done.

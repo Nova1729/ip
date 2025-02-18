@@ -5,7 +5,7 @@ import chatbot.checkduplicates.DuplicateDeadlineChecker;
 import chatbot.responses.AddDeadlineResponse;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.TaskList;
-import chatbot.check.DeadlineValidator;
+import chatbot.validation.DeadlineValidator;
 
 import java.util.ArrayList;
 import java.util.List;

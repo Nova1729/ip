@@ -4,7 +4,7 @@ import chatbot.Storage;
 import chatbot.exceptions.DeleteException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.check.DeleteValidator;
+import chatbot.validation.DeleteValidator;
 
 /**
  * Represents a command to delete a task from the task list.
