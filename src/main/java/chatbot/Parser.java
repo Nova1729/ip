@@ -38,6 +38,7 @@ public class Parser {
      * @throws TodoException If the TODO command is missing a description.
      * @throws DeadlineException If the DEADLINE command is missing the `/by` clause.
      * @throws EventException If the EVENT command is missing the `/from` or `/to` clauses.
+     * ......
      */
     public static Command parse(String fullCommand)
             throws UnknownCommandException, TodoException, DeadlineException, EventException, DeleteException, UnmarkException, MarkException {
@@ -45,6 +46,9 @@ public class Parser {
         String[] inputParts = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.toCommandType(inputParts[0]);
 
+        // I had asked chatGPT how to handle the different cases of commandType gracefully,
+        // originally I wanted to use if-else statements but my code became too nested,
+        // chatGPT advised me to use switch statements instead.
         switch (commandType) {
         case BYE:
             return new ExitCommand();

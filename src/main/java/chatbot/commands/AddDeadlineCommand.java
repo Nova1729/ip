@@ -40,6 +40,13 @@ public class AddDeadlineCommand extends Command {
         List<Deadline> addedDeadlines = new ArrayList<>();
         List<Deadline> duplicateDeadlines = new ArrayList<>();
 
+        // originally my code for this execute method was too long, so I asked chatGPT to
+        // help me break the method into different classes (AddDeadlineResponse
+        // and CheckDeadlineDuplicates) that are placed in different packages
+        // (responses and checkDuplicates). The same was done for AddEventCommand and
+        // AddTodoCommand.
+        // Also, the JavaDoc for the different commands are quite repetitive, so I wrote for
+        // class and asked chatGPT to generate the rest for me.
         for (String part : deadlineParts) {
             assert part != null && !part.trim().isEmpty() : "Each deadline entry should not be null or empty";
 
