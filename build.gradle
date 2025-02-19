@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClass.set("chatbot.Friday")
+    mainClass.set("chatbot.gui.Launcher")
 }
 
 shadowJar {

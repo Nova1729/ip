@@ -6,3 +6,6 @@ T | 0 | Submit lab report
 D | 0 | Submit report | 2025-03-01
 E | 0 | Team meeting | 2pm | 4pm
 T | 0 | Read a book
+D | 0 | submit cs homework | 2030-11-11
+D | 0 | Watch movie | 2034-12-03
+T | 0 | todo eat
